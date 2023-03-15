@@ -1,11 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import ProductCardMin from './ProductCardMin';
 import i18n, { t } from 'i18next';
 import { MyContext } from '../context/MyContext';
 
 function Wishes() {
-  const { PageControle, setPageControle, Products, social, Logo } =
+  const { PageControle, setPageControle, Products, wishes, setWishes } =
     useContext(MyContext);
+  const wishes_action = (p) => {
+    let new_wishes = wishes?.filter((w) => w?._id !== p?._id);
+    setWishes(new_wishes);
+    localStorage.setItem(
+      'wishes',
+      JSON?.stringify(new_wishes?.map((w) => w?._id))
+    );
+  };
   return (
     <nav
       className={`mobile-navigation-menu has-scrollbar ${
@@ -36,8 +44,8 @@ function Wishes() {
       >
         <div className='product-showcase'>
           <div className='showcase-container'>
-            {Products?.map((p, i) => (
-              <ProductCardMin product={p} key={i} />
+            {wishes?.map((p, i) => (
+              <ProductCardMin product={p} key={i} onDelete={wishes_action} />
             ))}
           </div>
         </div>

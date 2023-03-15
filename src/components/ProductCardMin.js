@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { MyContext } from '../context/MyContext';
 
-function ProductCardMin({ product }) {
+function ProductCardMin({ product, onDelete = () => {} }) {
+  const { Products, Categorys } = useContext(MyContext);
   return (
     <div className='showcase' style={{ position: 'relative' }}>
       <a href='#' className='showcase-img-box'>
@@ -16,9 +18,8 @@ function ProductCardMin({ product }) {
         <a href='#'>
           <h4 className='showcase-title'>{product?.name}</h4>
         </a>
-
         <a href='#' className='showcase-category'>
-          {product?.category}
+          {Categorys?.find((c) => c?._id === product?.category)?.name}
         </a>
 
         <div className='price-box'>
@@ -27,6 +28,7 @@ function ProductCardMin({ product }) {
         </div>
         <button
           style={{ position: 'absolute', left: 5, bottom: 5, padding: 5 }}
+          onClick={() => onDelete(product)}
         >
           <ion-icon name='close-outline'></ion-icon>
         </button>

@@ -3,8 +3,7 @@ import { MyContext } from '../context/MyContext';
 import Category from './Category';
 
 function ProductMinimal() {
-  const { PageControle, setPageControle, Products, social, Logo } =
-    useContext(MyContext);
+  const { Categorys, Products } = useContext(MyContext);
   return (
     <div className='container'>
       <div className='product-minimal'>
@@ -63,7 +62,7 @@ function ProductMinimal() {
                   </a>
 
                   <a href='#' className='showcase-category'>
-                    {p?.category}
+                    {Categorys?.find((c) => c?._id === p?.category)?.name}
                   </a>
 
                   <div className='price-box'>

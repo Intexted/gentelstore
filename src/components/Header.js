@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { MyContext } from '../context/MyContext';
-import ProductCardMin from './ProductCardMin';
 import i18n, { t } from 'i18next';
 import Wishes from './Wishes';
+import Search from './Search';
 
 function Header() {
-  const { PageControle, setPageControle, Products, social, Logo } =
+  const { PageControle, setPageControle, Products, social, Logo, wishes } =
     useContext(MyContext);
   const [ShowLng, setShowLng] = useState(false);
 
@@ -65,89 +65,7 @@ function Header() {
           </ul>
         </div>
       </div>
-
-      <div className='header-main'>
-        <div className='container'>
-          <Link to='/' className='header-logo'>
-            {Logo?.name}
-            <img src={Logo?.img} alt='logo' height='36' />
-          </Link>
-
-          <div
-            className={`header-search-container ${
-              PageControle.showSearch ? 'active' : ''
-            }`}
-          >
-            <input
-              type='search'
-              name='search'
-              className='search-field'
-              placeholder={t('Enter your product name...')}
-              onFocus={() => {
-                if (!PageControle.showSearch)
-                  setPageControle((page) => ({ ...page, showSearch: true }));
-              }}
-              onKeyUp={(v) => {
-                if (!PageControle.showSearch)
-                  setPageControle((page) => ({ ...page, showSearch: true }));
-              }}
-            />
-
-            <button className='search-btn'>
-              <ion-icon name='search-outline'></ion-icon>
-            </button>
-            <div
-              className='product-minimal has-scrollbar'
-              style={{
-                width: '100%',
-                position: 'absolute',
-                zIndex: 99,
-                background: 'white',
-                padding: 20,
-                borderRadius: 10,
-                top: '120%',
-                maxHeight: 400,
-                overflow: 'auto',
-              }}
-            >
-              <div className='product-showcase'>
-                {/* <h2 className='title'>New Arrivals</h2> */}
-                {/* <div className='showcase-wrapper'> */}
-                <div className='showcase-container'>
-                  {Products?.map((p, i) => (
-                    <ProductCardMin product={p} key={i} />
-                  ))}
-                  {/* </div> */}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className='header-user-actions'>
-            {/* <button className='action-btn'>
-              <ion-icon name='person-outline'></ion-icon>
-            </button> */}
-
-            <button className='action-btn'>
-              <ion-icon name='heart-outline'></ion-icon>
-              <span className='count'>
-                <span>0</span>
-              </span>
-            </button>
-
-            <button
-              className='action-btn'
-              onClick={() => {
-                setPageControle((page) => ({ ...page, showWishes: true }));
-              }}
-            >
-              <ion-icon name='bag-handle-outline'></ion-icon>
-              <span className='count'>0</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
+      <Search />
       <nav className='desktop-navigation-menu '>
         <div className='container'>
           <ul className='desktop-menu-category-list'>
@@ -227,7 +145,7 @@ function Header() {
           }}
         >
           <ion-icon name='heart-outline'></ion-icon>
-          <span className='count'>3</span>
+          <span className='count'>{wishes?.length || 0}</span>
         </button>
         {/* <Link className='action-btn' to={'/category'}>
           <ion-icon name='grid-outline'></ion-icon>

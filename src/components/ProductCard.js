@@ -2,7 +2,22 @@ import React, { useContext } from 'react';
 import { MyContext } from '../context/MyContext';
 
 function ProductCard({ category, store }) {
-  const { Products, Categorys } = useContext(MyContext);
+  const { Products, Categorys, wishes, setWishes } = useContext(MyContext);
+
+  const wishes_action = (p) => {
+    let product = wishes?.find((w) => w?._id === p?._id);
+    let new_wishes = [];
+    if (product) {
+      new_wishes = wishes?.filter((w) => w?._id !== p?._id);
+    } else {
+      new_wishes = [...wishes, p];
+    }
+    setWishes(new_wishes);
+    localStorage.setItem(
+      'wishes',
+      JSON?.stringify(new_wishes?.map((w) => w?._id))
+    );
+  };
   return (
     <div className='product-grid'>
       {Products.length > 0 &&
@@ -33,7 +48,7 @@ function ProductCard({ category, store }) {
               </p>
 
               <div className='showcase-actions'>
-                <button className='btn-action'>
+                <button className='btn-action' onClick={() => wishes_action(p)}>
                   <ion-icon name='heart-outline'></ion-icon>
                 </button>
 
