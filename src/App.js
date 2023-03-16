@@ -31,6 +31,7 @@ function App() {
         Products: 'Products',
         Wishes: 'Wishes',
         'best products': 'best products',
+        Cart: 'Shopping cart',
       },
     },
     fr: {
@@ -44,6 +45,7 @@ function App() {
         Products: 'Produits',
         Wishes: 'Préféré',
         'best products': 'meilleurs produits',
+        Cart: 'Panier',
       },
     },
     ar: {
@@ -57,6 +59,7 @@ function App() {
         Products: 'منتجات',
         Wishes: 'المفضلة',
         'best products': 'أفضل المنتجات',
+        Cart: 'عربة التسوق',
       },
     },
   });
@@ -69,6 +72,7 @@ function App() {
       {(PageControle.showMenu ||
         PageControle.showSearch ||
         PageControle.showWishes ||
+        PageControle.showCart ||
         PageControle.showCategory) && (
         <div
           className='overlay active'
@@ -77,6 +81,7 @@ function App() {
               showMenu: false,
               showCategory: false,
               showSearch: false,
+              showCart: false,
             });
           }}
         ></div>

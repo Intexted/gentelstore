@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { MyContext } from '../context/MyContext';
 
 function ProductCard({ category, store }) {
-  const { Products, Categorys, wishes, setWishes } = useContext(MyContext);
+  const { Products, Categorys, wishes, setWishes, setCart, myCart } =
+    useContext(MyContext);
 
   const wishes_action = (p) => {
     let product = wishes?.find((w) => w?._id === p?._id);
@@ -16,6 +17,23 @@ function ProductCard({ category, store }) {
     localStorage.setItem(
       'wishes',
       JSON?.stringify(new_wishes?.map((w) => w?._id))
+    );
+  };
+
+  const cart_add = ({ product, items = 1 }) => {
+    let index = myCart?.findIndex((c) => c?.product?._id === product?._id);
+    let new_cart = [...myCart];
+    if (index >= 0) {
+      new_cart = myCart?.filter((c) => c?.product?._id !== product?._id);
+    } else {
+      new_cart.push({ product, items });
+    }
+    setCart(new_cart);
+    localStorage.setItem(
+      'cart',
+      JSON?.stringify(
+        new_cart?.map((i) => ({ product: i?.product?._id, items: i?.items }))
+      )
     );
   };
   return (
@@ -48,7 +66,12 @@ function ProductCard({ category, store }) {
               </p>
 
               <div className='showcase-actions'>
-                <button className='btn-action' onClick={() => wishes_action(p)}>
+                <button
+                  className={`btn-action ${
+                    wishes.find((w) => w?._id === p?._id) ? 'heart-active' : ''
+                  }`}
+                  onClick={() => wishes_action(p)}
+                >
                   <ion-icon name='heart-outline'></ion-icon>
                 </button>
 
@@ -60,7 +83,10 @@ function ProductCard({ category, store }) {
                   <ion-icon name='repeat-outline'></ion-icon>
                 </button>
 
-                <button className='btn-action'>
+                <button
+                  className='btn-action'
+                  onClick={() => cart_add({ product: p, items: 1 })}
+                >
                   <ion-icon name='bag-add-outline'></ion-icon>
                 </button>
               </div>

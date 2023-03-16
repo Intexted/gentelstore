@@ -1,72 +1,73 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import ProductCardMin from './ProductCardMin';
+import i18n, { t } from 'i18next';
+import { MyContext } from '../context/MyContext';
 
 function Cart() {
+  const { PageControle, setPageControle, Products, myCart, setCart } =
+    useContext(MyContext);
+  const cart_action = (p) => {
+    let new_cart = myCart?.filter((c) => c?.product?._id !== p?._id);
+    setCart(new_cart);
+    localStorage.setItem('cart', JSON?.stringify(new_cart?.map((w) => w?._id)));
+  };
+
+  const cart_add = ({ product, items = 1 }) => {
+    let index = myCart?.findIndex((c) => c?.product?._id === product?._id);
+    let new_cart = [...myCart];
+    new_cart[index] = { product, items };
+    setCart(new_cart);
+    localStorage.setItem(
+      'cart',
+      JSON?.stringify(
+        new_cart?.map((i) => ({ product: i?.product?._id, items: i?.items }))
+      )
+    );
+  };
   return (
-    <div className='side-cart-summary active'>
-      <div className='cart-header'>
-        <h3>
-          سلة مشترياتي
-          <small>1 عناصر</small>
-        </h3>{' '}
-        <i className='yc yc-x-circle'></i>
-      </div>{' '}
-      <main className='cart-body'>
-        <div className='cart-list'>
-          <form action='/'>
-            <ul className='list-unstyled'>
-              <li className='cart-item'>
-                <img
-                  src='https://cdn.youcan.shop/stores/2a0c0959c9ce5dc394e3768614757f36/products/yUyru9tlow0nhE7JeBScrN4cRpkTkl2gDYu4EBFE_md.jpeg'
-                  alt='3في1 قطاعة خضر منزلية عملية ومريحة متعددة الأغراض ذات سعة كبيرة هرس الثوم وتقطيع البطاطس دائرية vegetable cutter'
-                  className='item-thumbnail'
-                />{' '}
-                <div className='item-body'>
-                  <div className='item-details'>
-                    <h3>
-                      <a href='https://caposhop.store/products/vegetable-cutter-1'>
-                        3في1 قطاعة خضر منزلية عملية ومريحة متعددة الأغراض ذات
-                        سعة كبيرة هرس الثوم وتقطيع البطاطس دائرية vegetable
-                        cutter
-                      </a>
-                    </h3>{' '}
-                    <div className='quantity-wrapper'>
-                      <span className='quantity'>
-                        الكمية <small>1</small>
-                      </span>{' '}
-                      <span className='currency-value'>
-                        <span className='value'>199</span>
-                        <span className='currency'>&nbsp;MAD</span>
-                      </span>
-                    </div>
-                  </div>{' '}
-                  <div className='item-actions'>
-                    <button type='button'>
-                      <i className='yc yc-edit'></i>
-                    </button>{' '}
-                    <button type='button'>
-                      <i className='yc yc-trash'></i>
-                    </button>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </form>
-        </div>{' '}
-      </main>{' '}
-      <footer className='cart-footer'>
-        <h4>
-          مجموع سلة التسوق
-          <span className='currency-value'>
-            <span className='value'>199</span>
-            <span className='currency'>&nbsp;MAD</span>
-          </span>
-        </h4>{' '}
-        <div className='cart-actions'>
-          <button className='button primary-button'>شراء الآن</button>{' '}
-          <a className='button default-button'>استمر في التسوق</a>
+    <nav
+      className={`mobile-navigation-menu has-scrollbar ${
+        PageControle?.showCart ? 'active' : ''
+      }`}
+    >
+      <div className='menu-top'>
+        <h2 className='menu-title'>{t('Cart')}</h2>
+
+        <button
+          className='menu-close-btn'
+          onClick={() =>
+            setPageControle((page) => ({ ...page, showCart: false }))
+          }
+        >
+          <ion-icon name='close-outline'></ion-icon>
+        </button>
+      </div>
+
+      <div
+        className='product-minimal has-scrollbar'
+        style={{
+          zIndex: 99,
+          background: 'white',
+          borderRadius: 10,
+          overflow: 'auto',
+        }}
+      >
+        <div className='product-showcase'>
+          <div className='showcase-container'>
+            {myCart?.map((c, i) => (
+              <ProductCardMin
+                product={c.product}
+                key={i}
+                onDelete={cart_action}
+                cart_add={cart_add}
+                cart={true}
+                items={c?.items}
+              />
+            ))}
+          </div>
         </div>
-      </footer>
-    </div>
+      </div>
+    </nav>
   );
 }
 

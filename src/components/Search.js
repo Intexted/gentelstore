@@ -6,7 +6,7 @@ import ProductCardMin from './ProductCardMin';
 
 function Search() {
   const [search, setSearch] = useState('');
-  const { PageControle, setPageControle, Products, Logo, wishes } =
+  const { PageControle, setPageControle, Products, Logo, wishes, myCart } =
     useContext(MyContext);
 
   return (
@@ -77,7 +77,12 @@ function Search() {
           <ion-icon name='person-outline'></ion-icon>
         </button> */}
 
-          <button className='action-btn'>
+          <button
+            className='action-btn'
+            onClick={() => {
+              setPageControle((page) => ({ ...page, showWishes: true }));
+            }}
+          >
             <ion-icon name='heart-outline'></ion-icon>
             <span className='count'>{wishes?.length || 0}</span>
           </button>
@@ -85,11 +90,11 @@ function Search() {
           <button
             className='action-btn'
             onClick={() => {
-              setPageControle((page) => ({ ...page, showWishes: true }));
+              setPageControle((page) => ({ ...page, showCart: true }));
             }}
           >
             <ion-icon name='bag-handle-outline'></ion-icon>
-            <span className='count'>0</span>
+            <span className='count'>{myCart?.length || 0}</span>
           </button>
         </div>
       </div>

@@ -1,8 +1,13 @@
 import React, { useContext } from 'react';
 import { MyContext } from '../context/MyContext';
 
-function ProductCardMin({ product, onDelete = () => {} }) {
-  const { Products, Categorys } = useContext(MyContext);
+function ProductCardMin({
+  product,
+  onDelete = () => {},
+  items,
+  cart_add = () => {},
+}) {
+  const { Products, Stores } = useContext(MyContext);
   return (
     <div className='showcase' style={{ position: 'relative' }}>
       <a href='#' className='showcase-img-box'>
@@ -15,19 +20,53 @@ function ProductCardMin({ product, onDelete = () => {} }) {
       </a>
 
       <div className='showcase-content'>
+        <a href='#' className='showcase-category'>
+          {Stores?.find((c) => c?._id === product?.store)?.name}
+        </a>
         <a href='#'>
           <h4 className='showcase-title'>{product?.name}</h4>
-        </a>
-        <a href='#' className='showcase-category'>
-          {Categorys?.find((c) => c?._id === product?.category)?.name}
         </a>
 
         <div className='price-box'>
           <p className='price'>{product?.prix}</p>
           <del>{+product?.prix + product?.prix / 10}</del>
         </div>
+        {items && (
+          <div style={{ display: 'flex', color: 'var(--salmon-pink)' }}>
+            <div style={{ margin: 'auto' }}></div>
+            <button
+              onClick={() =>
+                cart_add({
+                  product,
+                  items: items - 1 > 1 ? items - 1 : 1,
+                })
+              }
+            >
+              <ion-icon name='remove-outline'></ion-icon>
+            </button>
+            <div style={{ width: 20, textAlign: 'center' }}>{items}</div>
+            <button
+              onClick={() =>
+                cart_add({
+                  product,
+                  items: items + 1,
+                })
+              }
+            >
+              <ion-icon name='add-outline'></ion-icon>
+            </button>
+          </div>
+        )}
+
         <button
-          style={{ position: 'absolute', left: 5, bottom: 5, padding: 5 }}
+          style={{
+            position: 'absolute',
+            left: 5,
+            top: 5,
+            padding: 5,
+            fontSize: 20,
+            color: 'var(--salmon-pink)',
+          }}
           onClick={() => onDelete(product)}
         >
           <ion-icon name='close-outline'></ion-icon>

@@ -1856,6 +1856,11 @@ body::-webkit-scrollbar-thumb:hover {
     transition: var(--transition-timing);
 }
 
+.product-grid .btn-action.heart-active {
+    color: white;
+    background-color: var(--salmon-pink);
+}
+
 .product-grid .btn-action:hover {
     background: var(--eerie-black);
     color: var(--white);
