@@ -108,5 +108,5 @@ const Axios = axios.create({
   // baseURL: 'http://localhost:3200/',
 });
 const GetData = (url) => {
-  return Axios.get(url);
+  return Axios.get(url + '.json');
 };
