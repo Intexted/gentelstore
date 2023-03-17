@@ -32,6 +32,9 @@ function App() {
         Wishes: 'Wishes',
         'best products': 'best products',
         Cart: 'Shopping cart',
+        Total: 'Total',
+        'add to cart': 'add to cart',
+        'Hurry Up! Offer ends in': 'Hurry Up! Offer ends in:',
       },
     },
     fr: {
@@ -46,6 +49,9 @@ function App() {
         Wishes: 'Préféré',
         'best products': 'meilleurs produits',
         Cart: 'Panier',
+        Total: 'Total',
+        'add to cart': 'Ajouter au panier',
+        'Hurry Up! Offer ends in': 'Dépêche-toi! L`offre se termine dans',
       },
     },
     ar: {
@@ -60,6 +66,9 @@ function App() {
         Wishes: 'المفضلة',
         'best products': 'أفضل المنتجات',
         Cart: 'عربة التسوق',
+        Total: 'المجموع',
+        'add to cart': 'أضف إلى السلة',
+        'Hurry Up! Offer ends in': 'أسرع! العرض ينتهي في:',
       },
     },
   });
@@ -93,7 +102,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path='/product' element={<SingleProduct />} />
+          <Route path='/product/:id' element={<SingleProduct />} />
           <Route path='/service' element={<Service />} />
           <Route path='/brand' element={<Brand />} />
           <Route path='/*' element={<Category />} />

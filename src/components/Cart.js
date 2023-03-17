@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ProductCardMin from './ProductCardMin';
 import i18n, { t } from 'i18next';
 import { MyContext } from '../context/MyContext';
@@ -24,6 +24,16 @@ function Cart() {
       )
     );
   };
+
+  const [Total, setTotal] = useState(0);
+
+  useEffect(() => {
+    if (myCart?.length > 0) {
+      let total = 0;
+      myCart?.map((i) => (total += +i?.product?.prix * i?.items));
+      setTotal(total);
+    }
+  }, [myCart]);
   return (
     <nav
       className={`mobile-navigation-menu has-scrollbar ${
@@ -52,8 +62,14 @@ function Cart() {
           overflow: 'auto',
         }}
       >
-        <div className='product-showcase'>
-          <div className='showcase-container'>
+        <div
+          className='product-showcase has-scrollbar '
+          style={{
+            overflow: 'auto',
+            maxHeight: 'calc( 100vh - 180px)',
+          }}
+        >
+          <div className='showcase-container '>
             {myCart?.map((c, i) => (
               <ProductCardMin
                 product={c.product}
@@ -66,6 +82,40 @@ function Cart() {
             ))}
           </div>
         </div>
+        {myCart?.length > 0 && (
+          <div
+            className='menu-social-container'
+            style={{ boxShadow: '0 -10px  10px hsla(0, 0%, 0%, 0.1)' }}
+          >
+            <div style={{ flex: 1 }}>
+              <h4
+                className='menu-title'
+                style={{
+                  borderBottom: '2px solid var(--cultured)',
+                  width: '100%',
+                  paddingBottom: 10,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}
+              >
+                {t('Total')} :<span style={{ fontSize: 20 }}> {Total} دم</span>
+              </h4>
+              <button
+                className='banner-btn'
+                style={{
+                  width: '100%',
+                  padding: 10,
+                  marginTop: 5,
+                  color: '#fff',
+                  borderRadius: 5,
+                }}
+              >
+                شراء الان
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );

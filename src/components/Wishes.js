@@ -42,7 +42,13 @@ function Wishes() {
           overflow: 'auto',
         }}
       >
-        <div className='product-showcase'>
+        <div
+          className='product-showcase has-scrollbar'
+          style={{
+            overflow: 'auto',
+            maxHeight: 'calc( 100vh - 80px)',
+          }}
+        >
           <div className='showcase-container'>
             {wishes?.map((p, i) => (
               <ProductCardMin product={p} key={i} onDelete={wishes_action} />

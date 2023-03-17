@@ -1,9 +1,17 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { MyContext } from '../context/MyContext';
 
 function ProductCard({ category, store }) {
-  const { Products, Categorys, wishes, setWishes, setCart, myCart } =
-    useContext(MyContext);
+  const {
+    setPageControle,
+    Products,
+    Categorys,
+    wishes,
+    setWishes,
+    setCart,
+    myCart,
+  } = useContext(MyContext);
 
   const wishes_action = (p) => {
     let product = wishes?.find((w) => w?._id === p?._id);
@@ -27,6 +35,7 @@ function ProductCard({ category, store }) {
       new_cart = myCart?.filter((c) => c?.product?._id !== product?._id);
     } else {
       new_cart.push({ product, items });
+      setPageControle((page) => ({ ...page, showCart: true }));
     }
     setCart(new_cart);
     localStorage.setItem(
@@ -42,7 +51,7 @@ function ProductCard({ category, store }) {
         Products?.filter((p) =>
           category ? p.category === category : store ? p.store === store : true
         )?.map((p, i) => (
-          <div className='showcase' key={i}>
+          <Link to={`/product/${p?._id}`} className='showcase' key={i}>
             <div className='showcase-banner'>
               <img
                 src={p?.photos[0]}
@@ -84,7 +93,11 @@ function ProductCard({ category, store }) {
                 </button>
 
                 <button
-                  className='btn-action'
+                  className={`btn-action ${
+                    myCart.find((i) => i?.product?._id === p?._id)
+                      ? 'cart-active'
+                      : ''
+                  }`}
                   onClick={() => cart_add({ product: p, items: 1 })}
                 >
                   <ion-icon name='bag-add-outline'></ion-icon>
@@ -93,13 +106,13 @@ function ProductCard({ category, store }) {
             </div>
 
             <div className='showcase-content'>
-              <a href='#' className='showcase-category'>
+              <Link to={`/product/${p?._id}`} className='showcase-category'>
                 {Categorys?.find((c) => c?._id === p?.category)?.name}
-              </a>
+              </Link>
 
-              <a href='#'>
+              <Link to={`/product/${p?._id}`}>
                 <h3 className='showcase-title'>{p?.name}</h3>
-              </a>
+              </Link>
 
               <div className='showcase-rating'>
                 <ion-icon name='star'></ion-icon>
@@ -114,7 +127,7 @@ function ProductCard({ category, store }) {
                 <del>{+p?.prix + p?.prix / 10}</del>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
     </div>
   );

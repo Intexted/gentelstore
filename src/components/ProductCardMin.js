@@ -6,8 +6,10 @@ function ProductCardMin({
   onDelete = () => {},
   items,
   cart_add = () => {},
+  close = true,
 }) {
   const { Products, Stores } = useContext(MyContext);
+  const del = +product?.prix + product?.prix / 10 || 0;
   return (
     <div className='showcase' style={{ position: 'relative' }}>
       <a href='#' className='showcase-img-box'>
@@ -29,7 +31,7 @@ function ProductCardMin({
 
         <div className='price-box'>
           <p className='price'>{product?.prix}</p>
-          <del>{+product?.prix + product?.prix / 10}</del>
+          <del>{del}</del>
         </div>
         {items && (
           <div style={{ display: 'flex', color: 'var(--salmon-pink)' }}>
@@ -58,19 +60,21 @@ function ProductCardMin({
           </div>
         )}
 
-        <button
-          style={{
-            position: 'absolute',
-            left: 5,
-            top: 5,
-            padding: 5,
-            fontSize: 20,
-            color: 'var(--salmon-pink)',
-          }}
-          onClick={() => onDelete(product)}
-        >
-          <ion-icon name='close-outline'></ion-icon>
-        </button>
+        {close && (
+          <button
+            style={{
+              position: 'absolute',
+              left: 5,
+              top: 5,
+              padding: 5,
+              fontSize: 20,
+              color: 'var(--salmon-pink)',
+            }}
+            onClick={() => onDelete(product)}
+          >
+            <ion-icon name='close-outline'></ion-icon>
+          </button>
+        )}
       </div>
     </div>
   );

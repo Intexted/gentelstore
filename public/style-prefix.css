@@ -697,7 +697,7 @@ body::-webkit-scrollbar-thumb:hover {
     padding: 20px;
     -webkit-box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.1);
     box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.1);
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     -ms-scroll-chaining: none;
     overscroll-behavior: contain;
     visibility: hidden;
@@ -881,6 +881,12 @@ body::-webkit-scrollbar-thumb:hover {
     -ms-flex-align: center;
     align-items: center;
     gap: 10px;
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    padding: 10px 20px 0;
+    bottom: 10px;
+    z-index: 99;
 }
 
 .menu-social-container .social-link {
@@ -1856,9 +1862,18 @@ body::-webkit-scrollbar-thumb:hover {
     transition: var(--transition-timing);
 }
 
-.product-grid .btn-action.heart-active {
+.product-grid .btn-action.heart-active,
+.product-grid .btn-action.heart-active:hover {
     color: white;
     background-color: var(--salmon-pink);
+    border-color: transparent;
+}
+
+.product-grid .btn-action.cart-active,
+.product-grid .btn-action.cart-active:hover {
+    color: white;
+    background-color: #AAF;
+    border-color: transparent;
 }
 
 .product-grid .btn-action:hover {

@@ -63,7 +63,7 @@ function Search() {
                   {Products?.filter((p) =>
                     p?.name?.toLowerCase().includes(search?.toLowerCase())
                   )?.map((p, i) => (
-                    <ProductCardMin product={p} key={i} />
+                    <ProductCardMin product={p} key={i} close={false} />
                   ))}
                   {/* </div> */}
                 </div>

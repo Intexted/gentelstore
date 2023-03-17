@@ -49,10 +49,10 @@ function Banner() {
     <div className='banner'>
       <div className='container' style={{ position: 'relative' }}>
         {/* <div className='slider-container has-scrollbar'> */}
-        <button className='banner-prev'>
+        <button className='banner-prev prev-2 '>
           <ion-icon name='chevron-back-outline'></ion-icon>
         </button>
-        <button className='banner-next'>
+        <button className='banner-next next-2'>
           <ion-icon name='chevron-forward-outline'></ion-icon>
         </button>
         <Swiper
@@ -65,8 +65,8 @@ function Banner() {
           // onSwiper={(swiper) => console.log(swiper)}
           className='slider-container'
           navigation={{
-            nextEl: '.banner-next',
-            prevEl: '.banner-prev',
+            nextEl: '.next-2',
+            prevEl: '.prev-2',
           }}
         >
           {sliders?.map((s, i) => (

@@ -14,10 +14,10 @@ function Category() {
       <div className='container' style={{ position: 'relative' }}>
         {/* <h2 className='title'>{t('Categories')} </h2> */}
         <div style={{ position: 'relative' }} className='category-slider'>
-          <button className='banner-next'>
+          <button className='banner-next next-1'>
             <ion-icon name='chevron-forward-outline'></ion-icon>
           </button>
-          <button className='banner-prev'>
+          <button className='banner-prev prev-1'>
             <ion-icon name='chevron-back-outline'></ion-icon>
           </button>
           <Swiper
@@ -27,8 +27,8 @@ function Category() {
             spaceBetween={20}
             initialSlide={slide}
             navigation={{
-              nextEl: '.banner-prev',
-              prevEl: '.banner-next',
+              nextEl: '.prev-1',
+              prevEl: '.next-1',
             }}
             breakpoints={{
               570: {
