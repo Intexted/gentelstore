@@ -6,6 +6,7 @@ import Wishes from './Wishes';
 import Search from './Search';
 import MobileMenu from './MobileMenu';
 import Cart from './Cart';
+import Order from './Order';
 
 function Header() {
   const { PageControle, setPageControle, myCart, social, Logo, wishes } =
@@ -162,6 +163,7 @@ function Header() {
       <MobileMenu />
       <Wishes />
       <Cart />
+      {PageControle.showOrder && <Order />}
 
       <Link
         className='action-btn whatsapp'

@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
-import Banner from './Banner';
-import SideBar from './SideBar';
+import Banner from '../components/Banner';
+import SideBar from '../components/SideBar';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import ProductCard from './ProductCard';
+import ProductCard from '../components/ProductCard';
 import i18n, { t } from 'i18next';
 import Category from './Category';
 import { MyContext } from '../context/MyContext';
 import Brand from './Brand';
-import Splash from './Splash';
+import Splash from '../components/Splash';
 
 function Main() {
   const { Categorys } = useContext(MyContext);

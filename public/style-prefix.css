@@ -259,12 +259,12 @@ body::-webkit-scrollbar-thumb:hover {
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    z-index: 10;
-    -webkit-animation: popup 1s ease-in-out 5s forwards;
-    animation: popup 1s ease-in-out 5s forwards;
+    /* opacity: 0; */
+    /* visibility: hidden; */
+    /* pointer-events: none; */
+    z-index: 99;
+    /* -webkit-animation: popup 1s ease-in-out 5s forwards;
+    animation: popup 1s ease-in-out 5s forwards; */
 }
 
 @-webkit-keyframes popup {
@@ -319,8 +319,8 @@ body::-webkit-scrollbar-thumb:hover {
     border-radius: var(--border-radius-md);
     overflow: hidden;
     z-index: 2;
-    -webkit-animation: scaleUp 0.5s ease-in-out 5s forwards;
-    animation: scaleUp 0.5s ease-in-out 5s forwards;
+    /* -webkit-animation: scaleUp 0.5s ease-in-out 5s forwards;
+    animation: scaleUp 0.5s ease-in-out 5s forwards; */
 }
 
 @-webkit-keyframes scaleUp {
@@ -394,10 +394,10 @@ body::-webkit-scrollbar-thumb:hover {
     border-radius: var(--border-radius-sm);
     border: 1px solid var(--cultured);
     margin-bottom: 16px;
+    font-family: 'Tajawal';
 }
 
 .btn-newsletter {
-    background: var(--eerie-black);
     color: var(--white);
     font-size: var(--fs-7);
     font-weight: var(--weight-600);
@@ -409,10 +409,11 @@ body::-webkit-scrollbar-thumb:hover {
     -webkit-transition: var(--transition-timing);
     -o-transition: var(--transition-timing);
     transition: var(--transition-timing);
+    background: var(--salmon-pink);
 }
 
 .btn-newsletter:hover {
-    background: var(--salmon-pink);
+    background: var(--eerie-black);
 }
 
 

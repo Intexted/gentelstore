@@ -2,19 +2,21 @@ import React, { useContext, useState } from 'react';
 import './App.css';
 
 import Header from './components/Header';
-import Main from './components/Main';
+import Main from './pages/Main';
 import { MyContext } from './context/MyContext';
 import { Route, Routes } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
-import SingleProduct from './components/SingleProduct';
+import SingleProduct from './pages/SingleProduct';
 
-import Category from './components/Category';
+import Category from './pages/Category';
 import Notification from './components/Notification';
 import Modale from './components/Modale';
 import { transtlation } from './hooks/translation';
-import Service from './components/Service';
-import Brand from './components/Brand';
+import Service from './pages/Service';
+import Brand from './pages/Brand';
 import Splash from './components/Splash';
+import ScrollToTop from './components/scrollToTop';
+import Order from './components/Order';
 
 function App() {
   const { PageControle, setPageControle, Products } = useContext(MyContext);
@@ -82,7 +84,8 @@ function App() {
         PageControle.showSearch ||
         PageControle.showWishes ||
         PageControle.showCart ||
-        PageControle.showCategory) && (
+        PageControle.showCategory ||
+        PageControle.showOrder) && (
         <div
           className='overlay active'
           onClick={() => {
@@ -91,6 +94,7 @@ function App() {
               showCategory: false,
               showSearch: false,
               showCart: false,
+              showOrder: false,
             });
           }}
         ></div>
@@ -100,12 +104,14 @@ function App() {
       {ShowNotif && <Notification setShowNotif={setShowNotif} />}
 
       <BrowserRouter>
+        <ScrollToTop />
         <Header />
         <Routes>
           <Route path='/product/:id' element={<SingleProduct />} />
           <Route path='/service' element={<Service />} />
           <Route path='/brand' element={<Brand />} />
-          <Route path='/*' element={<Category />} />
+          <Route path='/order' element={<Order />} />
+          <Route path='/category' element={<Category />} />
           <Route path='/' element={<Main />} />
         </Routes>
       </BrowserRouter>

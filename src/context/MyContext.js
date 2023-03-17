@@ -12,6 +12,7 @@ function MyContextProvider({ children }) {
     showSearch: false,
     showWishes: false,
     showCart: false,
+    showOrder: false,
   });
 
   const { Products, Categorys, social, sliders, Logo, Stores } = useGetData();

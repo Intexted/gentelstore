@@ -109,6 +109,15 @@ function Cart() {
                   marginTop: 5,
                   color: '#fff',
                   borderRadius: 5,
+
+                  fontSize: 16,
+                }}
+                onClick={() => {
+                  setPageControle({
+                    ...PageControle,
+                    showCart: false,
+                    showOrder: true,
+                  });
                 }}
               >
                 شراء الان

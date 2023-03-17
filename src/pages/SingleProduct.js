@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { MyContext } from '../context/MyContext';
 import { useGetData } from '../hooks/getData';
 import { useCountdown } from '../hooks/useCountdown';
-import ProductCard from './ProductCard';
+import ProductCard from '../components/ProductCard';
 
 function SingleProduct() {
   const { t } = useTranslation();

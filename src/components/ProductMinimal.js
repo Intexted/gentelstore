@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { MyContext } from '../context/MyContext';
-import Category from './Category';
+import Category from '../pages/Category';
 
 function ProductMinimal() {
   const { Categorys, Products } = useContext(MyContext);

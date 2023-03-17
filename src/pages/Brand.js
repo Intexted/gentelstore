@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { Autoplay, Navigation } from 'swiper';
 import { SwiperSlide, Swiper } from 'swiper/react';
-import ProductCard from './ProductCard';
+import ProductCard from '../components/ProductCard';
 import { t } from 'i18next';
 import { MyContext } from '../context/MyContext';
 
-function Category() {
-  const { Categorys } = useContext(MyContext);
+function Brand() {
+  const { Stores } = useContext(MyContext);
   const [slide, setSlide] = useState();
 
   return (
@@ -14,10 +14,10 @@ function Category() {
       <div className='container' style={{ position: 'relative' }}>
         {/* <h2 className='title'>{t('Categories')} </h2> */}
         <div style={{ position: 'relative' }} className='category-slider'>
-          <button className='banner-next next-1'>
+          <button className='banner-next'>
             <ion-icon name='chevron-forward-outline'></ion-icon>
           </button>
-          <button className='banner-prev prev-1'>
+          <button className='banner-prev'>
             <ion-icon name='chevron-back-outline'></ion-icon>
           </button>
           <Swiper
@@ -27,8 +27,8 @@ function Category() {
             spaceBetween={20}
             initialSlide={slide}
             navigation={{
-              nextEl: '.prev-1',
-              prevEl: '.next-1',
+              nextEl: '.banner-prev',
+              prevEl: '.banner-next',
             }}
             breakpoints={{
               570: {
@@ -43,7 +43,7 @@ function Category() {
               },
             }}
           >
-            {Categorys?.map((b, i) => (
+            {Stores?.map((b, i) => (
               <SwiperSlide
                 key={i}
                 onClick={() => {
@@ -67,11 +67,11 @@ function Category() {
           </Swiper>
         </div>
         <div className='product-main' style={{ marginTop: 20 }}>
-          <ProductCard category={slide} />
+          <ProductCard store={slide} />
         </div>
       </div>
     </div>
   );
 }
 
-export default Category;
+export default Brand;

@@ -51,7 +51,7 @@ function ProductCard({ category, store }) {
         Products?.filter((p) =>
           category ? p.category === category : store ? p.store === store : true
         )?.map((p, i) => (
-          <Link to={`/product/${p?._id}`} className='showcase' key={i}>
+          <div className='showcase' key={i}>
             <div className='showcase-banner'>
               <img
                 src={p?.photos[0]}
@@ -127,7 +127,7 @@ function ProductCard({ category, store }) {
                 <del>{+p?.prix + p?.prix / 10}</del>
               </div>
             </div>
-          </Link>
+          </div>
         ))}
     </div>
   );

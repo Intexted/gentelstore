@@ -1,14 +1,6 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import i18n, { t } from 'i18next';
-
-const Get = (url) => {
-  const Axios = axios.create({
-    baseURL: 'https://app-yr-default-rtdb.europe-west1.firebasedatabase.app/',
-    // baseURL: 'http://localhost:3200/',
-  });
-  return Axios.get(url + '.json');
-};
+import { Get } from '../services/Axios';
 
 export const useGetData = () => {
   const [sliders, setSliders] = useState([]);
@@ -26,7 +18,7 @@ export const useGetData = () => {
   const [Logo, setLogo] = useState({ img: '', name: '', message: '' });
 
   useEffect(() => {
-    Get('products')
+    Get({ url: 'products' })
       .then((d) => {
         if (!d?.error)
           try {
@@ -38,15 +30,15 @@ export const useGetData = () => {
         console.log(err);
       });
 
-    Get('categorys').then((d) => {
+    Get({ url: 'categorys' }).then((d) => {
       if (!d?.error) setCategorys(Object.values(d.data));
     });
 
-    Get('stores').then((d) => {
+    Get({ url: 'stores' }).then((d) => {
       if (!d?.error) setStores(Object.values(d.data));
     });
 
-    Get('my_store').then((d) => {
+    Get({ url: 'my_store' }).then((d) => {
       if (!d?.error)
         try {
           let {
