@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { MyContext } from '../context/MyContext';
 
 function ProductCardMin({
@@ -12,22 +13,22 @@ function ProductCardMin({
   const del = +product?.prix + product?.prix / 10 || 0;
   return (
     <div className='showcase' style={{ position: 'relative' }}>
-      <a href='#' className='showcase-img-box'>
+      <Link to={`product/${product?._id}`} className='showcase-img-box'>
         <img
           src={product?.photos[0]}
           alt={product?.name}
           width='70'
           className='showcase-img'
         />
-      </a>
+      </Link>
 
       <div className='showcase-content'>
-        <a href='#' className='showcase-category'>
+        <Link to={`product/${product?._id}`} className='showcase-category'>
           {Stores?.find((c) => c?._id === product?.store)?.name}
-        </a>
-        <a href='#'>
+        </Link>
+        <Link to={`product/${product?._id}`}>
           <h4 className='showcase-title'>{product?.name}</h4>
-        </a>
+        </Link>
 
         <div className='price-box'>
           <p className='price'>{product?.prix}</p>
