@@ -13,8 +13,8 @@ function Search() {
     <div className='header-main'>
       <div className='container'>
         <Link to='/' className='header-logo'>
-          {Logo?.name}
           <img src={Logo?.img} alt='logo' height='36' />
+          {Logo?.name}
         </Link>
 
         <div
