@@ -8,43 +8,6 @@ import { MyContext } from '../context/MyContext';
 function Banner() {
   const { sliders } = useContext(MyContext);
 
-  // const sliders = [
-  //   {
-  //     img: '/images/products/shirt-1.png',
-  //     subtitle: 'Trending item',
-  //     title: "Women's latest fashion sale",
-  //     message: ' starting at  20.00 dollar',
-  //     url: '/',
-  //   },
-  //   {
-  //     img: '/images/apple-watch-pcq.png',
-  //     subtitle: 'Trending accessories',
-  //     title: 'Modern sunglasses',
-  //     message: ' starting at  20.00 dollar',
-  //     url: '/',
-  //   },
-  //   {
-  //     img: '/images/sports-1.png',
-  //     subtitle: 'Sale Offer',
-  //     title: 'New fashion summer sale',
-  //     message: ' starting at  20.00 dollar',
-  //     url: '/',
-  //   },
-  //   {
-  //     img: '/images/shampoo.png',
-  //     subtitle: 'Sale Offer',
-  //     title: 'New fashion summer sale',
-  //     message: ' starting at  20.00 dollar',
-  //     url: '/',
-  //   },
-  //   {
-  //     img: '/images/clothes-3.png',
-  //     subtitle: 'Sale Offer',
-  //     title: 'New fashion summer sale',
-  //     message: ' starting at  20.00 dollar',
-  //     url: '/',
-  //   },
-  // ];
   return (
     <div className='banner'>
       <div className='container' style={{ position: 'relative' }}>
@@ -80,7 +43,7 @@ function Banner() {
 
                 <p className='banner-text'>{s?.message}</p>
 
-                <Link to={s?.url} className='banner-btn'>
+                <Link to={s?.URL} className='banner-btn'>
                   شراء الان
                 </Link>
               </div>

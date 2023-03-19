@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const Axios = axios.create({
-  baseURL: 'https://app-yr-default-rtdb.europe-west1.firebasedatabase.app/',
+  baseURL: 'https://ma7ali-f4ce3-default-rtdb.firebaseio.com',
   // baseURL: 'http://localhost:3200/',
 });
 

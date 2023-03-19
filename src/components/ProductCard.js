@@ -53,21 +53,24 @@ function ProductCard({ category, store }) {
         )?.map((p, i) => (
           <div className='showcase' key={i}>
             <div className='showcase-banner'>
-              <img
-                src={p?.photos[0]}
-                alt={p?.name}
-                width='300'
-                loading='lazy'
-                className='product-img default'
-              />
-              <img
-                src={p?.photos[1]}
-                alt={p?.name}
-                width='300'
-                loading='lazy'
-                className='product-img hover'
-              />
-
+              <Link to={`/product/${p?._id}`}>
+                <img
+                  src={p?.photos[0]}
+                  alt={p?.name}
+                  width='300'
+                  loading='lazy'
+                  className='product-img default'
+                />
+              </Link>
+              <Link to={`/product/${p?._id}`}>
+                <img
+                  src={p?.photos[1]}
+                  alt={p?.name}
+                  width='300'
+                  loading='lazy'
+                  className='product-img hover'
+                />
+              </Link>
               <p
                 className={`showcase-badge ${p?.badge?.color} ${p?.badge?.type}`}
               >
@@ -84,9 +87,11 @@ function ProductCard({ category, store }) {
                   <ion-icon name='heart-outline'></ion-icon>
                 </button>
 
-                <button className='btn-action'>
-                  <ion-icon name='eye-outline'></ion-icon>
-                </button>
+                <Link to={`/product/${p?._id}`}>
+                  <button className='btn-action'>
+                    <ion-icon name='eye-outline'></ion-icon>
+                  </button>
+                </Link>
 
                 <button className='btn-action'>
                   <ion-icon name='repeat-outline'></ion-icon>
@@ -125,6 +130,14 @@ function ProductCard({ category, store }) {
               <div className='price-box'>
                 <p className='price'>{p?.prix}</p>
                 <del>{+p?.prix + p?.prix / 10}</del>
+                <div style={{ marginLeft: 'auto' }}></div>
+                <button
+                  onClick={() => cart_add({ product: p, items: 1 })}
+                  className='banner-btn'
+                  style={{ margin: 'auto 0px ', marginTop: -10 }}
+                >
+                  شراء الان
+                </button>
               </div>
             </div>
           </div>
