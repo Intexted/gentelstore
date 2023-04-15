@@ -17,6 +17,11 @@ import Brand from './pages/Brand';
 import Splash from './components/Splash';
 import ScrollToTop from './components/scrollToTop';
 import Order from './components/Order';
+import ReactPixel from 'react-facebook-pixel';
+
+ReactPixel.init('596565782412115', {}, { debug: true, autoConfig: false });
+ReactPixel.pageView();
+ReactPixel.fbq('track', 'PageView');
 
 function App() {
   const { PageControle, setPageControle, Products } = useContext(MyContext);
