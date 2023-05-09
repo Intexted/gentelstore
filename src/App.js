@@ -1,27 +1,27 @@
-import React, { useContext, useState } from 'react';
-import './App.css';
+import React, { useContext, useState } from "react";
+import "./App.css";
 
-import Header from './components/Header';
-import Main from './pages/Main';
-import { MyContext } from './context/MyContext';
-import { Route, Routes } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
-import SingleProduct from './pages/SingleProduct';
+import Header from "./components/Header";
+import Main from "./pages/Main";
+import { MyContext } from "./context/MyContext";
+import { Route, Routes } from "react-router";
+import { BrowserRouter } from "react-router-dom";
+import SingleProduct from "./pages/SingleProduct";
 
-import Category from './pages/Category';
-import Notification from './components/Notification';
-import Modale from './components/Modale';
-import { transtlation } from './hooks/translation';
-import Service from './pages/Service';
-import Brand from './pages/Brand';
-import Splash from './components/Splash';
-import ScrollToTop from './components/scrollToTop';
-import Order from './components/Order';
-import ReactPixel from 'react-facebook-pixel';
+import Category from "./pages/Category";
+import Notification from "./components/Notification";
+import Modale from "./components/Modale";
+import { transtlation } from "./hooks/translation";
+import Service from "./pages/Service";
+import Brand from "./pages/Brand";
+import Splash from "./components/Splash";
+import ScrollToTop from "./components/scrollToTop";
+import Order from "./components/Order";
+// import ReactPixel from 'react-facebook-pixel';
 
-ReactPixel.init('596565782412115', {}, { debug: true, autoConfig: false });
-ReactPixel.pageView();
-ReactPixel.fbq('track', 'PageView');
+// ReactPixel.init('596565782412115', {}, { debug: true, autoConfig: false });
+// ReactPixel.pageView();
+// ReactPixel.fbq('track', 'PageView');
 
 function App() {
   const { PageControle, setPageControle, Products } = useContext(MyContext);
@@ -29,53 +29,53 @@ function App() {
   transtlation({
     en: {
       translation: {
-        'Enter your product name...': 'Enter your product name...',
-        Home: 'Home',
-        Services: 'Services',
-        Categories: 'Categories',
-        Brands: 'Brands',
-        Menu: 'Menu',
-        Products: 'Products',
-        Wishes: 'Wishes',
-        'best products': 'best products',
-        Cart: 'Shopping cart',
-        Total: 'Total',
-        'add to cart': 'add to cart',
-        'Hurry Up! Offer ends in': 'Hurry Up! Offer ends in:',
+        "Enter your product name...": "Enter your product name...",
+        Home: "Home",
+        Services: "Services",
+        Categories: "Categories",
+        Brands: "Brands",
+        Menu: "Menu",
+        Products: "Products",
+        Wishes: "Wishes",
+        "best products": "best products",
+        Cart: "Shopping cart",
+        Total: "Total",
+        "add to cart": "add to cart",
+        "Hurry Up! Offer ends in": "Hurry Up! Offer ends in:",
       },
     },
     fr: {
       translation: {
-        'Enter your product name...': 'Entrez le nom de votre produit...',
-        Home: 'Accueil',
-        Services: 'Services',
-        Categories: 'Catégories',
-        Brands: 'Marques',
-        Menu: 'Menu',
-        Products: 'Produits',
-        Wishes: 'Préféré',
-        'best products': 'meilleurs produits',
-        Cart: 'Panier',
-        Total: 'Total',
-        'add to cart': 'Ajouter au panier',
-        'Hurry Up! Offer ends in': 'Dépêche-toi! L`offre se termine dans',
+        "Enter your product name...": "Entrez le nom de votre produit...",
+        Home: "Accueil",
+        Services: "Services",
+        Categories: "Catégories",
+        Brands: "Marques",
+        Menu: "Menu",
+        Products: "Produits",
+        Wishes: "Préféré",
+        "best products": "meilleurs produits",
+        Cart: "Panier",
+        Total: "Total",
+        "add to cart": "Ajouter au panier",
+        "Hurry Up! Offer ends in": "Dépêche-toi! L`offre se termine dans",
       },
     },
     ar: {
       translation: {
-        'Enter your product name...': 'أدخل اسم المنتج الخاص بك ...',
-        Home: 'الرئيسية',
-        Services: 'خدمات',
-        Categories: 'فئات',
-        Brands: 'العلامات التجارية',
-        Menu: 'القائمة',
-        Products: 'منتجات',
-        Wishes: 'المفضلة',
-        'best products': 'أفضل المنتجات',
-        Cart: 'عربة التسوق',
-        Total: 'المجموع',
-        'add to cart': 'أضف إلى السلة',
-        'Hurry Up! Offer ends in': 'أسرع! العرض ينتهي في:',
+        "Enter your product name...": "أدخل اسم المنتج الخاص بك ...",
+        Home: "الرئيسية",
+        Services: "خدمات",
+        Categories: "فئات",
+        Brands: "العلامات التجارية",
+        Menu: "القائمة",
+        Products: "منتجات",
+        Wishes: "المفضلة",
+        "best products": "أفضل المنتجات",
+        Cart: "عربة التسوق",
+        Total: "المجموع",
+        "add to cart": "أضف إلى السلة",
+        "Hurry Up! Offer ends in": "أسرع! العرض ينتهي في:",
       },
     },
   });
@@ -84,7 +84,7 @@ function App() {
     return <Splash />;
   }
   return (
-    <div className='App'>
+    <div className="App">
       {(PageControle.showMenu ||
         PageControle.showSearch ||
         PageControle.showWishes ||
@@ -92,7 +92,7 @@ function App() {
         PageControle.showCategory ||
         PageControle.showOrder) && (
         <div
-          className='overlay active'
+          className="overlay active"
           onClick={() => {
             setPageControle({
               showMenu: false,
@@ -112,12 +112,12 @@ function App() {
         <ScrollToTop />
         <Header />
         <Routes>
-          <Route path='/product/:id' element={<SingleProduct />} />
-          <Route path='/service' element={<Service />} />
-          <Route path='/brand' element={<Brand />} />
-          <Route path='/order' element={<Order />} />
-          <Route path='/category' element={<Category />} />
-          <Route path='/' element={<Main />} />
+          <Route path="/product/:id" element={<SingleProduct />} />
+          <Route path="/service" element={<Service />} />
+          <Route path="/brand" element={<Brand />} />
+          <Route path="/order" element={<Order />} />
+          <Route path="/category" element={<Category />} />
+          <Route path="/" element={<Main />} />
         </Routes>
       </BrowserRouter>
     </div>
