@@ -9,6 +9,9 @@ import Category from "./Category";
 import { MyContext } from "../context/MyContext";
 import Brand from "./Brand";
 import Splash from "../components/Splash";
+import About from "../components/About";
+import Service from "./Service";
+import Slider from "../components/Slider";
 
 function Main() {
   const { Categorys } = useContext(MyContext);
@@ -45,6 +48,9 @@ function Main() {
         </div>
       </div>
       {/* TESTIMONIALS, CTA & SERVICE */}
+      <Slider />
+      {/* <About /> */}
+      <Service />
     </main>
   );
 }
